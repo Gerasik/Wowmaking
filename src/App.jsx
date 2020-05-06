@@ -35,6 +35,7 @@ function App() {
     const x = Math.floor(((e.offsetX || e.nativeEvent.offsetX) * canvasSize) / 500);
     const y = Math.floor(((e.offsetY || e.nativeEvent.offsetY) * canvasSize) / 500);
     context.clearRect(x, y, 1, 1);
+    changeHistory(context.getImageData(0, 0, canvasSize, canvasSize));
   };
 
   const changeColor = (e) => {
@@ -62,15 +63,6 @@ function App() {
     }
   };
 
-  const background = (e) => {
-    const context = e.target.getContext('2d');
-    e.target.getContext('2d').putImageData(history[history.length - 1], 0, 0);
-    const x = Math.floor(((e.offsetX || e.nativeEvent.offsetX) * canvasSize) / 500);
-    const y = Math.floor(((e.offsetY || e.nativeEvent.offsetY) * canvasSize) / 500);
-    context.fillStyle = color;
-    context.fillRect(x, y, 1, 1);
-  };
-
   return (
     <div className={styles.app}>
       <main className={styles.main}>
@@ -80,6 +72,7 @@ function App() {
           color={color}
           changeColor={changeColor}
           undo={undo}
+          tool={tool}
         />
         <Canvas
           tool={tool}
@@ -87,7 +80,6 @@ function App() {
           canvasSize={canvasSize}
           action={tool === 'pen' ? pen : eraser}
           changeHistory={changeHistory}
-          background={background}
         />
       </main>
     </div>
