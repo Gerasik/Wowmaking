@@ -5,8 +5,8 @@ import Control from './components/Control';
 import styles from './app.module.scss';
 
 function App() {
+  const canvasSize = 10;
   const [tool, setTool] = useState('pen');
-  const [canvasSize, setCanvasSize] = useState(10);
   const [data, setData] = useState(new ImageData(canvasSize, canvasSize));
   const [color, setColor] = useState('#fefefe');
   const [history, setHistory] = useState([new ImageData(canvasSize, canvasSize)]);
@@ -62,6 +62,15 @@ function App() {
     }
   };
 
+  const background = (e) => {
+    const context = e.target.getContext('2d');
+    e.target.getContext('2d').putImageData(history[history.length - 1], 0, 0);
+    const x = Math.floor(((e.offsetX || e.nativeEvent.offsetX) * canvasSize) / 500);
+    const y = Math.floor(((e.offsetY || e.nativeEvent.offsetY) * canvasSize) / 500);
+    context.fillStyle = color;
+    context.fillRect(x, y, 1, 1);
+  };
+
   return (
     <div className={styles.app}>
       <main className={styles.main}>
@@ -78,6 +87,7 @@ function App() {
           canvasSize={canvasSize}
           action={tool === 'pen' ? pen : eraser}
           changeHistory={changeHistory}
+          background={background}
         />
       </main>
     </div>

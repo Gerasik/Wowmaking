@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import styles from './style.module.scss';
 
-const Canvas = ({ data, canvasSize, action }) => {
+const Canvas = ({ data, canvasSize, action, background }) => {
   const element = useRef(document.createElement('canvas'));
 
   useEffect(() => {
@@ -24,6 +24,7 @@ const Canvas = ({ data, canvasSize, action }) => {
       width={canvasSize}
       height={canvasSize}
       onClick={action}
+      onMouseMove={background}
       onMouseDown={event}
       className={styles.canvas}
     />
