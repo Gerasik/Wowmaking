@@ -11,12 +11,11 @@ const Canvas = ({ data, canvasSize, action }) => {
     context.putImageData(data, 0, 0);
   }, [data]);
 
-  function event(e) {
+  const event = (e) => {
     const target = e.target;
     target.addEventListener('mousemove', action);
-    target.addEventListener('mouseleave', () => target.removeEventListener('mousemove', action));
     window.addEventListener('mouseup', () => target.removeEventListener('mousemove', action));
-  }
+  };
 
   return (
     <canvas

@@ -1,5 +1,53 @@
 .control {
-  background-color: #fff;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 80px;
+}
+
+.pen,
+.eraser,
+.color,
+.reset,
+.undo,
+.redo {
+  border: none;
+  background: #ffe900;
+  border: 2px solid #bfb330;
+  border-radius: 5px;
+  width: 49%;
+  // height: 50px;
+  margin: 1px 0;
+  // padding: 0;
+  height: 40px;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: inset 1px 2px 6px 1px #a69800;
+  }
+  &:active {
+    box-shadow: inset 1px 2px 4px 4px #a69800;
+  }
+  &:active,
+  &:focus {
+    outline: none;
+  }
+  &[disabled] {
+    background-color: gray;
+  }
+}
+
+.active {
+  box-shadow: inset 1px 2px 4px 4px #a69800;
+}
+
+.color {
+  box-sizing: border-box;
+}
+
+.redo {
+  img {
+    transform: scale(-1, 1);
+  }
 }
