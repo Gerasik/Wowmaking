@@ -23,23 +23,36 @@ const Control = ({
       <button
         onClick={() => changeTool(toolsConstants.PEN)}
         className={classNames(styles.pen, { [styles.active]: tool === toolsConstants.PEN })}
+        title={toolsConstants.PEN}
       >
         <img src={penSvg} alt="pen" width="20" />
       </button>
       <button
         onClick={() => changeTool(toolsConstants.ERASER)}
         className={classNames(styles.eraser, { [styles.active]: tool === toolsConstants.ERASER })}
+        title={toolsConstants.ERASER}
       >
         <img src={eraserSvg} alt="eraser" width="20" />
       </button>
-      <input type="color" value={color} onChange={changeColor} className={styles.color} />
-      <button onClick={resetCanvas} className={styles.reset}>
+      <input
+        type="color"
+        value={color}
+        onChange={changeColor}
+        className={styles.color}
+        title={toolsConstants.COLOR}
+      />
+      <button onClick={resetCanvas} className={styles.reset} title={toolsConstants.RESET}>
         <img src={trashSvg} alt="trash" width="20" />
       </button>
-      <button onClick={undo} className={styles.undo}>
+      <button onClick={undo} className={styles.undo} title={toolsConstants.UNDO}>
         <img src={undoSvg} alt="undo" width="20" />
       </button>
-      <button onClick={redo} className={styles.redo} disabled={!redoHistory.length}>
+      <button
+        onClick={redo}
+        className={styles.redo}
+        disabled={!redoHistory.length}
+        title={toolsConstants.REDO}
+      >
         <img src={undoSvg} alt="redo" width="20" />
       </button>
     </div>
